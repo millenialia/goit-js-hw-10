@@ -11,7 +11,7 @@ selectEl.classList.toggle('is-hidden')
 selectEl.addEventListener('change', onChange)
 
 fetchBreeds().then(renderCatOptions).catch(() => {
-      errorEl.classList.toggle('is-hidden')
+  errorEl.classList.toggle('is-hidden')
 }).finally(() => {
   loaderEl.classList.toggle('is-hidden')
   selectEl.classList.toggle('is-hidden')
@@ -27,7 +27,8 @@ function onChange(event) {
     const breedObj = breedArr[0].breeds[0];
     const breedImg = breedArr[0].url
     renderCatCard(breedImg, breedObj)
-    selectEl.classList.toggle('is-hidden')
+      selectEl.classList.toggle('is-hidden')
+      errorEl.classList.remove('is-hidden')
     })
     .catch(() => {
       errorEl.classList.toggle('is-hidden')
@@ -40,7 +41,7 @@ function onChange(event) {
 function renderCatOptions(breeds){
     const markup = breeds.map((breed) => `<option value='${breed.id}'>${breed.name}</option>`).join('')
   selectEl.insertAdjacentHTML("beforeend", markup)
-
+  errorEl.classList.remove('is-hidden')
 }
 
 function renderCatCard(breedImg, breedObj) {
